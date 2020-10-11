@@ -16,8 +16,19 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.sg.bankaccount.model.Account;
 import fr.sg.bankaccount.model.TransferHistory;
 
+/**
+ * Test Ressource REST for Account
+ */
+
 @Transactional
 public class AccountRessourceTest extends AbstractTest {
+
+	private final String URI_ACOOUNT_BY_ID = "/account/1";
+	private final String URI_TRANSACTION_ACCOUNT = 
+			"/transactionAccount?accountNumber=1&amout=100&operation=deposit";
+	private final String URI_TRANSACTION_ACCOUNT_TO_ACCOUNT = 
+			"/transactionAccountToAccount?creditedAccountNumber=1&debiteddAccountNumber=2&amout=50";
+
 	@Override
 	@Before
 	public void setUp() {
@@ -26,9 +37,8 @@ public class AccountRessourceTest extends AbstractTest {
 
 	@Test
 	public void account() throws Exception {
-		String uri = "/account/1";
 		MvcResult mvcResult = mvc.perform(
-				MockMvcRequestBuilders.get(uri).accept(
+				MockMvcRequestBuilders.get(URI_ACOOUNT_BY_ID).accept(
 						MediaType.APPLICATION_JSON_VALUE)).andReturn();
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(200, status);
@@ -41,9 +51,8 @@ public class AccountRessourceTest extends AbstractTest {
 	@Test
 	@Rollback
 	public void transactionAccount() throws Exception {
-		String uri = "/transactionAccount?accountNumber=1&amout=100&operation=deposit";
 		MvcResult mvcResult = mvc.perform(
-				MockMvcRequestBuilders.post(uri).accept(
+				MockMvcRequestBuilders.post(URI_TRANSACTION_ACCOUNT).accept(
 						MediaType.APPLICATION_JSON_VALUE)).andReturn();
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(200, status);
@@ -56,10 +65,9 @@ public class AccountRessourceTest extends AbstractTest {
 	@Test
 	@Rollback
 	public void transactionAccountToAccount() throws Exception {
-		String uri = "/transactionAccountToAccount?creditedAccountNumber=1&debiteddAccountNumber=2&amout=50";
 		MvcResult mvcResult = mvc.perform(
-				MockMvcRequestBuilders.post(uri).accept(
-						MediaType.APPLICATION_JSON_VALUE)).andReturn();
+				MockMvcRequestBuilders.post(URI_TRANSACTION_ACCOUNT_TO_ACCOUNT)
+						.accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(200, status);
 		String content = mvcResult.getResponse().getContentAsString();

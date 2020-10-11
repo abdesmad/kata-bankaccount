@@ -34,23 +34,41 @@ public class TransferHistory implements Serializable {
 	@Column(name = "DT_CREATE")
 	private Date dtCreate;
 
+	/**
+	 * The account awner
+	 */
 	@ManyToOne
 	@JoinColumn(name = "ID_ACCOUNT")
 	private Account account;
 
+	/**
+	 * The account with interaction
+	 */
 	@ManyToOne
 	@JoinColumn(name = "ID_ACCOUNT_INTERACTION")
 	private Account accountInteraction;
-
+	
+	/**
+	 * The operation type
+	 */
 	@Column(name = "OPERATION")
 	private String operation;
 
+	/**
+	 * The amount of transfer
+	 */
 	@Column(name = "AMOUNT")
 	private BigDecimal amount;
 
+	/**
+	 * The balance before transfer 
+	 */
 	@Column(name = "BALANCE_BEFORE")
 	private BigDecimal balanceBefore;
 
+	/**
+	 * The balance after transfer 
+	 */
 	@Column(name = "BALANCE_AFTER")
 	private BigDecimal balanceAfter;
 

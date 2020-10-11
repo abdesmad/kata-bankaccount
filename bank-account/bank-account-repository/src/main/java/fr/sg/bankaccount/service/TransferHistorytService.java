@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import fr.sg.bankaccount.model.TransferHistory;
 import fr.sg.bankaccount.repository.TransferHistoryRepository;
 
+/**
+ * Service Transfert history
+ */
+
 @Service
 public class TransferHistorytService {
 

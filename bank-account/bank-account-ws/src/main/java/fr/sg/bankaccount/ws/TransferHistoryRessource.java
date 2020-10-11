@@ -11,12 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.sg.bankaccount.model.TransferHistory;
 import fr.sg.bankaccount.service.TransferHistorytService;
 
+/**
+ * Ressource REST for Transfer History
+ */
+
 @RestController
 public class TransferHistoryRessource {
 
 	@Autowired
 	TransferHistorytService transferHistorytService;
 
+	/**
+     * Get all transfer history by accountNumber
+     *
+     * @return List<TransferHistory>
+     */
 	@GetMapping(path = "/transferHistoryByAccountNumber")
 	public List<TransferHistory> transferHistoryByAccountNumber(
 			@RequestParam BigInteger accountNumber) {

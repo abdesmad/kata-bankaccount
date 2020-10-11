@@ -14,6 +14,10 @@ import fr.sg.bankaccount.model.Account;
 import fr.sg.bankaccount.model.TransferHistory;
 import fr.sg.bankaccount.repository.AccountRepository;
 
+/**
+ * Service Account
+ */
+
 @Service
 public class AccountService {
 

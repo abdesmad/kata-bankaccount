@@ -20,3 +20,4 @@ Application that manages bank account transactions and transfers history
 * Go to bank-account project (parent project) and launch maven command "mvn clean install"
 * Go to bank-account-ws and launch maven command "spring-boot:run "
 * With swagger you can see and test all services on http://localhost:8080/swagger-ui.html#/
+

@@ -2,14 +2,14 @@
 
 ## PRESENTATION
 
-Application that manages bank account transactions and transfers history
+Application which manage bank account transactions and transfers history
 
 ## The components
 
 | Composant | Description |
 |---|---|	
 | bank-account | Maven parent project |
-| bank-account-repository | maven module : manage the application models with their service |
+| bank-account-repository | maven module : manage the application models with their services |
 | bank-account-ws | maven module : offers the different web services |
 
 ## Prerequisites

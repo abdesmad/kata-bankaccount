@@ -27,7 +27,7 @@ public class TransferHistorytService {
 		return transferHistoryRepository.findByAccount(accountService.getById(accountNumber));
 	}
 
-	public void createTransferHistory(List<TransferHistory> transferHistorys) {
-		transferHistoryRepository.saveAll(transferHistorys);
+	public List<TransferHistory> createTransferHistory(List<TransferHistory> transferHistorys) {
+		return transferHistoryRepository.saveAll(transferHistorys);
 	}
 }

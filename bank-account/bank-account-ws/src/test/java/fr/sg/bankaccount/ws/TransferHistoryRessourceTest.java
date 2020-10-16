@@ -25,6 +25,8 @@ public class TransferHistoryRessourceTest extends AbstractTest {
 	
 	private final String URI_TRANSFER_HISTORY_BY_ACCOUNT = 
 			"/transferHistoryByAccountNumber?accountNumber=2";
+	private final String URI_TRANSFER_HISTORY_BY_ACCOUNT_NOT_FOUND_EXCEPTION = 
+			"/transferHistoryByAccountNumber?accountNumber=22";
 	private final String URI_TRANSACTION_ACCOUNT_TO_ACCOUNT = 
 			"/transactionAccountToAccount?creditedAccountNumber=1&debiteddAccountNumber=2&amout=50";
 	
@@ -59,6 +61,18 @@ public class TransferHistoryRessourceTest extends AbstractTest {
 		assertEquals(transferHistory.getBalanceAfter(),
 				new BigDecimal("150.00"));
 		assertEquals(transferHistory.getOperation(), "pull");
+	}
+	
+	@Test
+	public void transferHistoryByAccountNumberNotFoundException() throws Exception {
+		// Call transfer history ressource
+		MvcResult mvcResult = mvc.perform(
+				MockMvcRequestBuilders.get(URI_TRANSFER_HISTORY_BY_ACCOUNT_NOT_FOUND_EXCEPTION).accept(
+						MediaType.APPLICATION_JSON_VALUE)).andReturn();
+		int status = mvcResult.getResponse().getStatus();
+		assertEquals(404, status);
+		String content = mvcResult.getResponse().getContentAsString();
+		assertEquals("The account whose accountNumber = 22 does not exist", content);
 	}
 	
 	public void createTransactionAccountToAccount() throws Exception {
